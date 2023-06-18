@@ -1,0 +1,156 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+</head>
+<body>
+  <div class="macbook-pro-14-1">
+    <div class="loan-calculator-parent">
+      <div class="loan-calculator">Loan Calculator</div>
+      <div class="monthly-payment">Monthly payment</div>
+      <b class="total-principal-paid">Total principal paid</b>
+      <b class="total-interested-paid">Total interest paid</b>
+      <label class="label" id="Tp-paid">$</label>
+      <label class="label1" id="TI-paid">$</label>
+      <label class="label2" id="monthly-payment">$</label>
+      <button class="calculate-wrapper">
+        <div class="calculate" id="calculate">CALCULATE</div>
+      </button>
+      <div class="frame-child"></div>
+      <input class="frame-item" type="number" placeholder="$loan amount" id="Qiimaha-amaahda" />
+      <input class="frame-inner" type="text" placeholder="loan term in years" id="Mudada-amaahda-laga-rabo" />
+      <input class="frame-input" type="text" placeholder="loan term in months" id="muddada-amaahda-bilo-gudahood" />
+    </div>
+    <input class="macbook-pro-14-1-child" type="text" placeholder="Interest rate per year (%)" id="Qiimaha-dulsaarka-sannadkii" />
+  </div>
+
+  <script>
+    // Get input elements
+    const loanAmountInput = document.getElementById("Qiimaha-amaahda");
+    const loanTermYearsInput = document.getElementById("Mudada-amaahda-laga-rabo");
+    const loanTermMonthsInput = document.getElementById("muddada-amaahda-bilo-gudahood");
+    const interestRateInput = document.getElementById("Qiimaha-dulsaarka-sannadkii");
+    const calculateButton = document.getElementById("calculate");
+
+    // Get label elements
+    const monthlyPaymentLabel = document.getElementById("monthly-payment");
+    const totalPrincipalPaidLabel = document.getElementById("Tp-paid");
+    const totalInterestPaidLabel = document.getElementById("TI-paid");
+
+    // Add click event listener to the calculate button
+    calculateButton.addEventListener("click", calculateLoan);
+
+    function calculateLoan() {
+      const loanAmount = parseFloat(loanAmountInput.value);
+      const loanTermYears = parseFloat(loanTermYearsInput.value);
+      const loanTermMonths = parseFloat(loanTermMonthsInput.value);
+      const interestRate = parseFloat(interestRateInput.value);
+
+      // Calculate monthly interest rate
+      const monthlyInterestRate = interestRate / 12 / 100;
+
+      // Calculate total number of months
+      const totalMonths = loanTermYears * 12 + loanTermMonths;
+
+      // Calculate monthly payment
+      const monthlyPayment = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalMonths) /
+        (Math.pow(1 + monthlyInterestRate, totalMonths) - 1);
+
+      // Calculate total principal paid
+      const totalPrincipalPaid = loanAmount;
+
+      // Calculate total interest paid
+      const totalInterestPaid = monthlyPayment * totalMonths - loanAmount;
+
+      // Display results
+      monthlyPaymentLabel.innerText = "$" + monthlyPayment.toFixed(2);
+      totalPrincipalPaidLabel.innerText = "$" + totalPrincipalPaid.toFixed(2);
+      totalInterestPaidLabel.innerText = "$" + totalInterestPaid.toFixed(2);
+    }
+  </script>
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="macbook-pro-14-1">
+      <div class="loan-calculator-parent">
+        <div class="loan-calculator">loan Calculator</div>
+        <div class="monthly-payment">Monthly payment</div>
+        <b class="total-principal-paid">Total principal paid</b>
+        <b class="total-interested-paid">Total Interested paid</b>
+        <label class="label" id="Tp-paid">$</label>
+        <label class="label1" id="TI-paid">$</label>
+        <label class="label2" id="monthly-payment">$</label>
+        <button class="calculate-wrapper">
+          <div class="calculate" id="calculate">CALCULATE</div>
+        </button>
+        <div class="frame-child"></div>
+        <input
+          class="frame-item"
+          type="number"
+          placeholder="$loan amount"
+          id="Qiimaha-amaahda"
+        />
+
+        <input
+          class="frame-inner"
+          type="text"
+          placeholder="loan term in layer"
+          id="Mudada-amaahda-laga-rabo"
+        />
+
+        <input
+          class="frame-input"
+          type="text"
+          placeholder="loan term in months"
+          id="muddada-amaahda-bilo-gudahood"
+        />
+      </div>
+      <input
+        class="macbook-pro-14-1-child"
+        type="text"
+        placeholder="Interested rate per year                 %"
+        id="Qiimaha-dulsaarka-sannadkii"
+      />
+    </div>
+    <script>
+      const calculate = document.getElementById("calculate");
+      calculate.addEventListener("click", () => {
+        const loanAmount = document.getElementById("Qiimaha-amaahda").value;
+        const loanTermInLayers = document.getElementById("Mudada-amaahda-laga-rabo").value;
+        const loanTermInMonths = document.getElementById("muddada-amaahda-bilo-gudahood").value;
+        const interestedRatePerYear = document.getElementById("Qiimaha-dulsaarka-sannadkii").value;
+
+        const monthlyPayment = loanAmount *
+          (interestedRatePerYear / 12) /
+          (1 -
+            Math.pow(
+              1 + (interestedRatePerYear / 12),
+              -loanTermInMonths
+            ));
+
+        const totalPrincipalPaid = monthlyPayment * loanTermInMonths;
+        const totalInterestPaid = totalPrincipalPaid - loanAmount;
+
+        document.getElementById("Tp-paid").innerHTML = totalPrincipalPaid;
+        document.getElementById("TI-paid").innerHTML = totalInterestPaid;
+        document.getElementById("monthly-payment").innerHTML = monthlyPayment;
+      });
+    </script>
+  </body>
+</html>
